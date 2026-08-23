@@ -27,13 +27,11 @@ Which customer segments generate the most revenue, and which high-value segments
 
 ## Process
 
-Raw CSV data was cleaned in Python, then RFM metrics were calculated and validated against an equivalent SQL query. Customers were scored and segmented, cross-referenced against country-level revenue, and the results were loaded into Tableau for the final dashboard.
-
 1. Data cleaning (Python/pandas) — remove missing Customer IDs, cancelled invoices, invalid quantity/price rows
 2. RFM calculation (Python and SQL) — Recency, Frequency, Monetary per customer
 3. Scoring and segmentation — quintile scoring (1-5) per metric, six customer segments
 4. Country-level analysis — revenue and segment mix by market
-5. Dashboard — built in Tableau Public
+5. Dashboard built in Tableau Public
 
 ## Methodology: RFM Segmentation
 
@@ -49,7 +47,7 @@ Data cleaning rules:
 - Removed rows with missing Customer ID
 - Removed cancelled invoices (Invoice numbers starting with "C")
 - Removed rows with non-positive Quantity or Price
-- Calculated Revenue as Quantity multiplied by Price
+- Calculated Revenue as Quantity × Price
 
 ## Tech Stack
 
@@ -68,13 +66,15 @@ summary/ Findings and business recommendations
 
 Full findings and business recommendations are in [summary/findings_summary.md](summary/findings_summary.md).
 
-- Champions make up 22 percent of customers but generated roughly 68 percent of total revenue (£12M of £17.7M)
-- The United Kingdom dominates in total revenue but has a much lower average revenue per customer than smaller markets like EIRE and the Netherlands, suggesting those markets include bulk or reseller buyers
-- Roughly 29 percent of UK customers fall into the At Risk or Lost segments, representing a significant revenue recovery opportunity
+- Champions account for 22% of customers but generate ~68% of total revenue (£12M of £17.7M), highlighting a strong concentration of revenue among high-value customers.
+- The UK generates the most revenue overall, but average revenue per customer is notably lower than in smaller markets such as EIRE and the Netherlands. This difference is worth investigating further, as it may reflect differences in customer mix, including a higher proportion of bulk or reseller customers in those markets.
+- ~29% of UK customers are classified as At Risk or Lost, suggesting a meaningful opportunity for targeted retention and reactivation campaigns.
 
 ## Why RFM
 
-RFM was chosen over more complex methods, such as churn prediction models, because it is simple, interpretable to non-technical stakeholders, and does not require labeled outcome data. This makes it a reasonable starting point for segmentation without ML infrastructure. Its main limitation is that it is descriptive rather than predictive — it does not account for product category or acquisition channel, and it does not forecast future behavior.
+I used RFM because it provides a simple way to segment customers using existing transaction data, without requiring labelled churn outcomes. It is also straightforward to explain to non-technical stakeholders and translates directly into customer segments that can be acted on.
+
+The main limitation is that RFM is descriptive rather than predictive. It shows how customers have behaved based on their recent activity, purchase frequency, and spend, but it does not predict whether they will churn. It also does not account for factors such as product category, acquisition channel, or customer demographics.
 
 ## Author
 
