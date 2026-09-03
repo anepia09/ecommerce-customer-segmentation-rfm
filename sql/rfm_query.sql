@@ -1,6 +1,3 @@
--- RFM Analysis Query
--- Calculates Recency, Frequency, and Monetary value per customer
-
 WITH customer_rfm AS (
     SELECT
         "Customer ID" AS customer_id,
